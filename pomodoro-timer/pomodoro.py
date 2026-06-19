@@ -34,18 +34,20 @@ DEFAULT_SETTINGS = {
     "volume": 80,
 }
 
-# Color scheme — warm and bright palette
+# Color scheme — Mediterranean kitchen timer palette
+# Inspired by Italian coastal towns: sun-baked terra cotta,
+# tomato reds, olive greens, warm stone. Not the AI-default cream.
 COLORS = {
-    "bg_primary": "#FFF8F0",       # warm cream
-    "bg_secondary": "#FFF0E0",     # light peach
-    "bg_tertiary": "#FFE4CC",      # deeper peach
-    "accent_focus": "#FF6B6B",     # coral red
-    "accent_break": "#66BB6A",     # fresh green
-    "accent_long_break": "#42A5F5", # calm blue
-    "text_primary": "#2C1810",       # deep espresso brown
-    "text_secondary": "#6B4F3C",     # darker warm tan
-    "text_muted": "#9B7B6C",         # mid brown, readable
-    "border": "#D4B8A0",             # deeper beige for contrast
+    "bg_primary": "#FAF7F2",       # stone white, cooler than generic cream
+    "bg_secondary": "#F0EAE0",     # warm stone, for cards/tabs
+    "bg_tertiary": "#E0D0BC",      # light terra cotta, for selected states
+    "accent_focus": "#C84B31",     # tomato red — confident, not coral
+    "accent_break": "#5B8C5A",     # olive green from the herb garden
+    "accent_long_break": "#B8845C", # warm amber, like a clay pot
+    "text_primary": "#1E1510",      # deep espresso
+    "text_secondary": "#5C4A3A",    # warm brown
+    "text_muted": "#8C7968",        # dusty taupe, good contrast
+    "border": "#D4C8B8",            # warm stone border
     "white": "#ffffff",
 }
 
@@ -247,6 +249,25 @@ class PomodoroTimer(tk.Tk):
         # Background ring
         self.timer_canvas.create_oval(cx - r, cy - r, cx + r, cy + r,
                                       outline=COLORS["border"], width=8, tags="ring_bg")
+
+        # Tick marks — 60 marks like a mechanical kitchen timer dial
+        ring_outer = r + 4          # outer edge of the 8px-wide ring
+        tick_color = COLORS["border"]
+        for i in range(60):
+            angle = math.radians(-90 + i * 6)  # -90 = 12 o'clock, 6° per tick
+            if i % 5 == 0:
+                # Long tick at every 5th mark
+                r1, r2 = ring_outer, ring_outer + 7
+                w = 2
+                tag = "tick_long"
+            else:
+                r1, r2 = ring_outer, ring_outer + 4
+                w = 1
+                tag = "tick_short"
+            x1, y1 = cx + r1 * math.cos(angle), cy + r1 * math.sin(angle)
+            x2, y2 = cx + r2 * math.cos(angle), cy + r2 * math.sin(angle)
+            self.timer_canvas.create_line(x1, y1, x2, y2,
+                                          fill=tick_color, width=w, tags=("tick", tag))
 
         # Progress ring (drawn as arc)
         self.ring_progress = self.timer_canvas.create_arc(
@@ -473,6 +494,8 @@ class PomodoroTimer(tk.Tk):
         self._current_accent = colors.get(self.mode, COLORS["accent_focus"])
         # Update the ring progress color
         self.timer_canvas.itemconfig(self.ring_progress, outline=self._current_accent)
+        # Color the long tick marks with the accent
+        self.timer_canvas.itemconfig("tick_long", fill=self._current_accent)
 
     def _update_mode_tabs(self):
         for m, btn in self.mode_tabs.items():
