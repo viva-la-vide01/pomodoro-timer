@@ -34,18 +34,18 @@ DEFAULT_SETTINGS = {
     "volume": 80,
 }
 
-# Color scheme
+# Color scheme — warm and bright palette
 COLORS = {
-    "bg_primary": "#1a1a2e",
-    "bg_secondary": "#16213e",
-    "bg_tertiary": "#0f3460",
-    "accent_focus": "#e94560",
-    "accent_break": "#4ecca3",
-    "accent_long_break": "#3498db",
-    "text_primary": "#eeeeee",
-    "text_secondary": "#a0a0b0",
-    "text_muted": "#666666",
-    "border": "#2a2a4a",
+    "bg_primary": "#FFF8F0",       # warm cream
+    "bg_secondary": "#FFF0E0",     # light peach
+    "bg_tertiary": "#FFE4CC",      # deeper peach
+    "accent_focus": "#FF6B6B",     # coral red
+    "accent_break": "#66BB6A",     # fresh green
+    "accent_long_break": "#42A5F5", # calm blue
+    "text_primary": "#2C1810",       # deep espresso brown
+    "text_secondary": "#6B4F3C",     # darker warm tan
+    "text_muted": "#9B7B6C",         # mid brown, readable
+    "border": "#D4B8A0",             # deeper beige for contrast
     "white": "#ffffff",
 }
 

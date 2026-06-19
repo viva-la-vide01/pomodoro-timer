@@ -1,55 +1,55 @@
-# Pomodoro Timer
+# 番茄钟
 
-A beautiful desktop Pomodoro timer built with Python and tkinter. Zero external dependencies — runs on any Windows machine out of the box.
+基于 Python + tkinter 构建的精美桌面番茄钟。零外部依赖，即开即用。
 
-## Features
+## 功能介绍
 
-- **Three modes** — Focus (25 min) / Short Break (5 min) / Long Break (15 min)
-- **Auto-switch** — Automatically cycles between focus and break sessions; every 4 focus sessions triggers a long break
-- **Circular progress ring** — Visual countdown with smooth arc animation
-- **Task list** — Add, complete, and delete tasks for the current focus session
-- **Session counter** — Track daily pomodoro count with visual dots
-- **Sound notification** — Dual-beep alert when a session ends (uses `winsound`)
-- **Always-on-top** — Pin the window above other applications
-- **Customizable settings** — Adjust durations, intervals, auto-start behavior, and volume
-- **History** — View daily pomodoro counts (last 90 days retained)
-- **Keyboard shortcuts** — Full control without touching the mouse
+- **三种模式** — 专注（25分钟）/ 短休息（5分钟）/ 长休息（15分钟）
+- **自动切换** — 专注与休息自动循环；每完成 4 个专注自动进入长休息
+- **圆形进度环** — 可视化倒计时，圆环平滑递减动画
+- **任务列表** — 添加、勾选完成、删除当前专注任务
+- **番茄计数** — 圆点跟踪今日番茄完成数
+- **声音提示** — 计时结束双音提醒（使用 `winsound`）
+- **窗口置顶** — 一键将窗口固定在最前
+- **自定义设置** — 自由调整时长、间隔、自动切换、音量等
+- **历史记录** — 查看每日番茄数量（保留最近 90 天）
+- **键盘快捷键** — 无需鼠标即可完整操控
 
-## Screenshots
+## 界面预览
 
 ```
    +----------------------------------+
    |   Pin                 -  □  ✕   |
    +----------------------------------+
-   |    Focus  | Short Break|Long Break|
+   |    专注   |  短休息  |  长休息   |
    |                                  |
    |          +----------+            |
    |         /    25:00   \           |
-   |        |   Ready to   |          |
-   |         \   start    /           |
+   |        |   准备开始   |          |
+   |         \          /            |
    |          +----------+            |
    |                                  |
-   |        o o o o   4 dots          |
+   |        ● ● ○ ○   圆点进度        |
    |                                  |
-   |    [Reset] [▶ Start] [Skip]     |
+   |    [重置] [▶ 开始] [跳过]       |
    |                                  |
-   |   Current Task                   |
-   |   [Add task...            ] [+]  |
-   |   o Buy groceries                |
-   |   o Code review          x       |
+   |   当前任务                       |
+   |   [输入任务描述…          ] [+]  |
+   |   ○ 购买食材                    |
+   |   ○ 代码审查              ✕     |
    |                                  |
    |              [⚙] [📊]            |
    +----------------------------------+
 ```
 
-## Quick Start
+## 快速开始
 
-### Option 1: Run the EXE (No Python required)
+### 方式一：直接运行 EXE（无需安装 Python）
 
-1. Download `PomodoroTimer.exe` from the [Releases](https://github.com/viva-la-vide01/pomodoro-timer/releases) page
-2. Double-click to run
+1. 从 [Releases](https://github.com/viva-la-vide01/pomodoro-timer/releases) 页面下载 `PomodoroTimer.exe`
+2. 双击运行即可
 
-### Option 2: Run from source
+### 方式二：从源码运行
 
 ```bash
 git clone https://github.com/viva-la-vide01/pomodoro-timer.git
@@ -57,43 +57,43 @@ cd pomodoro-timer/pomodoro-timer
 python pomodoro.py
 ```
 
-Requires Python 3.x (no extra packages needed).
+需要 Python 3.x（无需安装任何额外包）。
 
-## Keyboard Shortcuts
+## 键盘快捷键
 
-| Key | Action |
-|-----|--------|
-| `Space` | Start / Pause |
-| `R` | Reset current session |
-| `S` | Skip current session |
-| `1` | Switch to Focus mode |
-| `2` | Switch to Short Break mode |
-| `3` | Switch to Long Break mode |
+| 按键 | 功能 |
+|------|------|
+| `空格` | 开始 / 暂停 |
+| `R` | 重置当前计时 |
+| `S` | 跳过当前阶段 |
+| `1` | 切换到专注模式 |
+| `2` | 切换到短休息模式 |
+| `3` | 切换到长休息模式 |
 
-## Data Storage
+## 数据存储
 
-All settings and history are stored as JSON files in `%USERPROFILE%\.pomodoro_timer\`:
+所有设置和历史记录以 JSON 文件存储在 `%USERPROFILE%\.pomodoro_timer\` 目录下：
 
-- `settings.json` — User preferences (durations, intervals, volume, etc.)
-- `history.json` — Daily pomodoro counts and task lists (90-day retention)
+- `settings.json` — 用户偏好设置（时长、间隔、音量等）
+- `history.json` — 每日番茄数及任务列表（保留 90 天）
 
-## Build from Source
+## 源码构建
 
 ```bash
 pip install pyinstaller
 pyinstaller --onefile --windowed --name PomodoroTimer --clean pomodoro.py
 ```
 
-The executable will be in `dist/PomodoroTimer.exe`.
+构建产物位于 `dist/PomodoroTimer.exe`。
 
-## Tech Stack
+## 技术栈
 
-- **Language**: Python 3.9+
-- **GUI**: tkinter (standard library)
-- **Sound**: winsound (Windows built-in)
-- **Data**: JSON files (standard library)
-- **Packaging**: PyInstaller
+- **语言**：Python 3.9+
+- **GUI**：tkinter（标准库）
+- **声音**：winsound（Windows 内置）
+- **数据**：JSON 文件（标准库）
+- **打包**：PyInstaller
 
-## License
+## 开源协议
 
 MIT
