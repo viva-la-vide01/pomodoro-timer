@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "PowerShell(Start-Process python -ArgumentList \"d:\\\\software\\\\vscode\\\\yunhe_cc_project\\\\pomodoro-timer\\\\pomodoro.py\" -WindowStyle Normal)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"d:\\\\software\\\\vscode\\\\yunhe_cc_project\"; if \\(Test-Path \".git\"\\) { Write-Output \"Git repo already exists\"; & \"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" status --short } else { Write-Output \"No git repo yet — need to init\" })"
+    ]
+  }
+}

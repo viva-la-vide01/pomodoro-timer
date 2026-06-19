@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <title>番茄钟</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Title Bar -->
+  <div class="titlebar" id="titlebar">
+    <div class="titlebar-drag">
+      <span class="titlebar-title">🍅 番茄钟</span>
+    </div>
+    <div class="titlebar-controls">
+      <button class="titlebar-btn" id="btn-pin" title="窗口置顶">📌</button>
+      <button class="titlebar-btn" id="btn-min" title="最小化">─</button>
+      <button class="titlebar-btn" id="btn-max" title="最大化">□</button>
+      <button class="titlebar-btn btn-close" id="btn-close" title="关闭">✕</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Mode Tabs -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="focus">🍅 专注</button>
+      <button class="mode-tab" data-mode="shortBreak">☕ 短休息</button>
+      <button class="mode-tab" data-mode="longBreak">🌿 长休息</button>
+    </div>
+
+    <!-- Timer Circle -->
+    <div class="timer-wrapper">
+      <svg class="timer-ring" viewBox="0 0 200 200">
+        <circle class="ring-bg" cx="100" cy="100" r="90"></circle>
+        <circle class="ring-progress" cx="100" cy="100" r="90" id="ring-progress"></circle>
+      </svg>
+      <div class="timer-display">
+        <div class="timer-text" id="timer-text">25:00</div>
+        <div class="timer-status" id="timer-status">准备开始</div>
+      </div>
+    </div>
+
+    <!-- Session Counter -->
+    <div class="session-info">
+      <span class="session-label">今日番茄</span>
+      <div class="session-dots" id="session-dots"></div>
+    </div>
+
+    <!-- Control Buttons -->
+    <div class="controls">
+      <button class="ctrl-btn btn-reset" id="btn-reset" title="重置">
+        <span class="btn-icon">↺</span>
+      </button>
+      <button class="ctrl-btn btn-start" id="btn-start" title="开始">
+        <span class="btn-icon" id="btn-start-icon">▶</span>
+      </button>
+      <button class="ctrl-btn btn-skip" id="btn-skip" title="跳过">
+        <span class="btn-icon">⏭</span>
+      </button>
+    </div>
+
+    <!-- Current Task -->
+    <div class="task-section">
+      <div class="task-header">
+        <span class="task-label">当前任务</span>
+      </div>
+      <div class="task-input-row">
+        <input type="text" class="task-input" id="task-input" placeholder="输入任务描述…" maxlength="80">
+        <button class="task-add-btn" id="task-add-btn">+</button>
+      </div>
+      <ul class="task-list" id="task-list"></ul>
+    </div>
+
+    <!-- Settings Panel (hidden by default) -->
+    <div class="settings-panel" id="settings-panel">
+      <h3 class="settings-title">⚙ 设置</h3>
+      <div class="settings-row">
+        <label>专注时长（分钟）</label>
+        <input type="number" id="set-focus" min="1" max="120" value="25">
+      </div>
+      <div class="settings-row">
+        <label>短休息（分钟）</label>
+        <input type="number" id="set-short-break" min="1" max="30" value="5">
+      </div>
+      <div class="settings-row">
+        <label>长休息（分钟）</label>
+        <input type="number" id="set-long-break" min="1" max="60" value="15">
+      </div>
+      <div class="settings-row">
+        <label>长休息间隔（次）</label>
+        <input type="number" id="set-interval" min="1" max="10" value="4">
+      </div>
+      <div class="settings-row">
+        <label>自动开始休息</label>
+        <input type="checkbox" id="set-auto-break" checked>
+      </div>
+      <div class="settings-row">
+        <label>自动开始专注</label>
+        <input type="checkbox" id="set-auto-focus">
+      </div>
+      <div class="settings-row">
+        <label>音量</label>
+        <input type="range" id="set-volume" min="0" max="100" value="80">
+      </div>
+      <button class="settings-save-btn" id="settings-save-btn">保存设置</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <button class="footer-btn" id="btn-settings">⚙</button>
+      <button class="footer-btn" id="btn-history">📊</button>
+    </div>
+  </div>
+
+  <!-- Audio element for notification sound -->
+  <audio id="audio-notify" preload="auto"></audio>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
